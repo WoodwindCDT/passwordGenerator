@@ -20,11 +20,6 @@
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
 // Set Variables && Arrays section
 var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -43,14 +38,43 @@ var symbolsAcceptt;
 var numbersAccept;
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
+var generatePass = function() {
+  // Input for length of password
+  var passLength = window.prompt("Hello! Please type a length of at least '8' characters and no more than '128' characters");
+  
+  // Validation set to deter from too short or too long passwords
+  while (passLength < 8 || passLength > 128) {
+    window.alert("Please enter the accepted amount of characters! Try again.");
+    return generatePass();
+  }
+  
+  // Returning to the user how many characters they chose
+  var lenghConfirm = window.confirm("You have chosen " + passLength + " characters for your password length. Is this correct?");
+    if (lenghConfirm) {
+      alert("Great! Before we continue, you must confirm at least one character type: 'UpperCase, LowerCase, Symbols, or Numbers. This is for your safety <3");
+    }
+    else {
+      return generatePass();
+    }
 
-  var passwordText = document.querySelector("#password");
+    // To clarify if user wants upperCase
+    var upperCaseAccept = window.confirm("If you would like your password to include UpperCase letters > Click 'OK' to confirm. If not > Click 'Cancel'");
+    //if (upperCaseAccept === ) {
+      
+    
 
-  passwordText.value = password;
+};
 
-}
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+// Add event listener to generate button
+generateBtn.addEventListener("click", generatePass);
 
 // Execute Function
-writePassword();
+generatePass();
+
+//var password = generatePassword();
+
+  //var passwordText = document.querySelector("#password");
+
+  //passwordText.value = password;
