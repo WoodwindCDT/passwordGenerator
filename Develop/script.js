@@ -106,24 +106,55 @@ var generatePass = function() {
       alert("Please select atleast one character input. Thank you!")
       return generatePass();
     }
+
+    // Variable for all selected inputs
+    var userChosenSelections = []
+
+    // Simplified way to add each confirmed element into a single area
+    if (upperCaseAccept) {
+      userChosenSelections = userChosenSelections.concat(upperCase);
+    }
+
+    if (lowerCaseAccept) {
+      userChosenSelections = userChosenSelections.concat(lowerCase);
+    }
+
+    if (numbersAccept) {
+      userChosenSelections = userChosenSelections.concat(numbers);
+    }
+
+    if (symbolsAccept) {
+      userChosenSelections = userChosenSelections.concat(symbols);
+    }
+
+    // To log the selected inputs
+    console.log(userChosenSelections);
+
+    var randomizedPass = "";
+    // Using however many characters the user wanted their password to be
+    for (var i = 0; i < passLength; i++) {
+      // Array brackets to match and perform with the simplified structure
+      randomizedPass = randomizedPass + userChosenSelections[Math.floor(Math.random() * userChosenSelections.length)];
+      console.log(randomizedPass);
+    }
+    return randomizedPass;
 };
 
-// Get references to the #generate element
+// Reference to the #generate element
 var generateBtn = document.querySelector("#generate");
 // Add event listener to generate button
 generateBtn.addEventListener("click", generatePass);
 
+function passwordtocard() {
+// variable for all generated characters
+var password = randomizedPass();
+// Reference to #password element
+var passwordText = document.querySelector("#password");
+
+// PassWord Text Value
+passwordText.value = password;
+
+}
+
 // Execute Function
 generatePass();
-
-//var password = generatePassword();
-
-  //var passwordText = document.querySelector("#password");
-
-  //passwordText.value = password;
-  //else {
-    //alert("You've chosen not to use 'Numbers'.")
-   //var inputReset = window.confirm("Would you like to restart with your selections?")
-      //if (inputReset) {
-        //return generatePass();
-     // }
