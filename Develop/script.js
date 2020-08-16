@@ -33,9 +33,11 @@ var upperCaseAccept;
 // User Accepted lowercased
 var lowerCaseAccept;
 // User Accepted symbols
-var symbolsAcceptt;
+var symbolsAccept;
 // User Accepted numbers
 var numbersAccept;
+// To restart in selection
+var inputReset;
 
 // Write password to the #password input
 var generatePass = function() {
@@ -49,7 +51,7 @@ var generatePass = function() {
   }
   
   // Returning to the user how many characters they chose
-  var lenghConfirm = window.confirm("You have chosen " + passLength + " characters for your password length. Is this correct?");
+  var lenghConfirm = window.confirm("You have chosen " + passLength + " characters for your password length. Is this OK? > Click 'Cancel' to revise");
     if (lenghConfirm) {
       alert("Great! Before we continue, you must confirm at least one character type: 'UpperCase, LowerCase, Symbols, or Numbers. This is for your safety <3");
     }
@@ -58,11 +60,52 @@ var generatePass = function() {
     }
 
     // To clarify if user wants upperCase
-    var upperCaseAccept = window.confirm("If you would like your password to include UpperCase letters > Click 'OK' to confirm. If not > Click 'Cancel'");
-    //if (upperCaseAccept === ) {
-      
-    
+    var upperCaseAccept = window.confirm("If you would like your password to include 'Upper-Case' letters > Click 'OK' to confirm. If not > Click 'Cancel'");
+    if (upperCaseAccept) {
+      alert("You've given the okay to use 'Upper-Case' letters.");
+    }
+    else {
+      alert("You've chosen to not use 'Upper-Case' letters.");
+    }
 
+    // To clarify if user wants lowercase
+    var lowerCaseAccept = window.confirm("If you would like your password to include 'Lower-case' letters > Click 'OK' to confirm. If not > Click 'Cancel'");
+    if (lowerCaseAccept) {
+      alert("You've given the okay to use 'Lower-Case' letters.");
+    }
+    else {
+      alert("You've chosen to not use 'Lower-Case' letters.");
+    }
+
+    // To clarify if user wants numbers
+    var numbersAccept = window.confirm("If you would like your password to include 'Numbers' > Click 'OK' to confirm. If not > Click 'Cancel'");
+      if (numbersAccept) {
+        alert("You've given the okay to use 'Numbers'.");
+      }
+      else {
+        alert("You've chosen not to use 'Numbers'.");
+      }
+
+    // To clarify if user wants symbols
+    var symbolsAccept = window.confirm("If you would like your password to include 'Symbols' > Click 'OK' to confirm. If not > Click 'Cancel'");
+    if (symbolsAccept) {
+      alert("You've given the okay to use 'Symbols'.");
+    }
+    else {
+      alert("You've chosen not to use 'Symbols'.");
+    }
+
+    // To clarify if user wants to reset selections
+    var inputReset = window.confirm("Would you like to restart with your selections? > Click 'OK' to do so. > Click 'Cancel' to continue.");
+      if (inputReset) {
+      return generatePass();
+    }
+
+    // To prevent from 0 selections being confirmed
+    while (upperCaseAccept === false && lowerCaseAccept === false && numbersAccept === false && symbolsAccept === false) {
+      alert("Please select atleast one character input. Thank you!")
+      return generatePass();
+    }
 };
 
 // Get references to the #generate element
@@ -78,3 +121,9 @@ generatePass();
   //var passwordText = document.querySelector("#password");
 
   //passwordText.value = password;
+  //else {
+    //alert("You've chosen not to use 'Numbers'.")
+   //var inputReset = window.confirm("Would you like to restart with your selections?")
+      //if (inputReset) {
+        //return generatePass();
+     // }
