@@ -1,25 +1,3 @@
-// Assignment code here
-
-// Presented with a series of prompts for password criteria
-
-// Prompted for password criteria
-// THEN I select which criteria to include in the password
-
-// Prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-
-// WHEN prompted for character types to include in the password
-// THEN I choose lowercase, uppercase, numeric, and/or special characters
-
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
-
 // Set Variables && Arrays section
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
@@ -95,13 +73,7 @@ var generatePass = function() {
     else {
       alert("You've chosen not to use 'Symbols'.");
     }
-
-    // To clarify if user wants to reset selections
-    var inputReset = window.confirm("Would you like to restart with your selections? > Click 'OK' to do so. > Click 'Cancel' to continue.");
-      if (inputReset) {
-      return generatePass();
-    }
-    
+  
     // To prevent from 0 selections being confirmed
     while (!upperCaseAccept && !lowerCaseAccept && !numbersAccept && !symbolsAccept) {
       alert("Please select atleast one character input. Thank you!")
@@ -115,8 +87,7 @@ var generatePass = function() {
     userChosenSelections += (lowerCaseAccept ? lowerCase : "");
     userChosenSelections += (numbersAccept ? numbers : "");
     userChosenSelections += (symbolsAccept ? symbols : "");
-
-    console.log(userChosenSelections);
+  
     // Our given password to transfer into html file for display
     generatedPass = password(passLength, userChosenSelections);
 
@@ -131,7 +102,6 @@ function password(passLength, userChosenSelections) {
     // Array brackets to match and perform with the simplified structure
     generatedPass += userChosenSelections.charAt(Math.floor(Math.random() * userChosenSelections.length));
   }
-  console.log(generatedPass);
   return generatedPass;
 };
 
